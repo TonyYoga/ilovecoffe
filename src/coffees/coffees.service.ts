@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
@@ -6,9 +6,15 @@ export class CoffeesService {
   private coffees: Coffee[] = [
     {
       id: 1,
-      name: 'one',
-      brand: 'new',
-      flavors: ['one', 'two'],
+      name: 'first',
+      brand: 'new F',
+      flavors: ['1', '2'],
+    },
+    {
+      id: 2,
+      name: 'second',
+      brand: 'new S',
+      flavors: ['3', '4'],
     },
   ];
 
@@ -32,8 +38,10 @@ export class CoffeesService {
   }
 
   public remove(id: string) {
-    const coffeeIndex = this.coffees.findIndex((item) => item.id === +id);
-    if (coffeeIndex) {
+    let coffeeIndex = -1;
+    coffeeIndex = this.coffees.findIndex((item) => item.id === +id);
+    Logger.log(`index: ${coffeeIndex}`);
+    if (coffeeIndex >= 0) {
       this.coffees.splice(coffeeIndex, 1);
     }
   }
