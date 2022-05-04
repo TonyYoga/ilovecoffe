@@ -25,7 +25,6 @@ export class CoffeesController {
   findAll(@Query() pagination) {
     // const { limit, offset } = pagination;
     return this.coffeesService.getAll();
-    // return `This action return coffee Limit: ${limit} Offset: ${offset}`;
   }
 
   @Get(':id')
@@ -36,7 +35,6 @@ export class CoffeesController {
       // throw new HttpException(`Coffee #${id} not found`, HttpStatus.NOT_FOUND);
     }
     return coffee;
-    // return `This action return #${id}coffee`;
   }
 
   @Post()
@@ -48,13 +46,11 @@ export class CoffeesController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffeesService.update(id, updateCoffeeDto);
-    // return `This action update #${id}coffee`;
   }
 
   @Delete(':id')
   delete(@Param('id') id: string) {
     Logger.log(`id: ${id}`);
     return this.coffeesService.remove(id);
-    // return `This action delete #${id}coffee`;
   }
 }
