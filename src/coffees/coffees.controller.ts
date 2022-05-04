@@ -3,7 +3,11 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
   Logger,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -24,7 +28,11 @@ export class CoffeesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.coffeesService.getOne(id);
+    const coffee = this.coffeesService.getOne(id);
+    if (!coffee) {
+      throw new NotFoundException(`Coffee #${id} not found`);
+      // throw new HttpException(`Coffee #${id} not found`, HttpStatus.NOT_FOUND);
+    }
     // return `This action return #${id}coffee`;
   }
 
