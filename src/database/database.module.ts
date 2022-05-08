@@ -1,18 +1,6 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { ConnectionOptions, createConnection } from 'typeorm';
 
-// @Module({
-//   providers: [
-//     {
-//       provide: 'CONNECTIONS',
-//       useValue: createConnection({
-//         type: 'postgres',
-//         host: 'localhost',
-//         port: 5432,
-//       }),
-//     },
-//   ],
-// })
 @Module({})
 export class DatabaseModule {
   static register(options: ConnectionOptions): DynamicModule {
