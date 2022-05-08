@@ -3,9 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpException,
-  HttpStatus,
   Logger,
   NotFoundException,
   Param,
@@ -13,6 +10,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -22,9 +20,8 @@ export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) {}
 
   @Get()
-  findAll(@Query() pagination) {
-    // const { limit, offset } = pagination;
-    return this.coffeesService.getAll();
+  findAll(@Query() pagination: PaginationQueryDto) {
+    return this.coffeesService.getAll(pagination);
   }
 
   @Get(':id')
