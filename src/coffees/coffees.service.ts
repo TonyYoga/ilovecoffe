@@ -18,7 +18,9 @@ export class CoffeesService {
     private readonly flavorRepository: Repository<Flavor>,
     private readonly connection: Connection,
     @Inject(COFFEE_BRANDS) coffeeBrands: string[],
-  ) {}
+  ) {
+    console.log(coffeeBrands);
+  }
 
   public getAll(pagination: PaginationQueryDto) {
     const { limit, offset } = pagination;
