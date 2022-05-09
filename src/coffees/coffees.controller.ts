@@ -19,7 +19,6 @@ import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 
-// @UsePipes(ValidationPipe)
 @Controller('coffees')
 export class CoffeesController {
   constructor(
@@ -29,7 +28,6 @@ export class CoffeesController {
     console.log('CoffeesController created');
   }
 
-  // @UsePipes(ValidationPipe)
   @Get()
   findAll(@Query() pagination: PaginationQueryDto) {
     return this.coffeesService.getAll(pagination);
