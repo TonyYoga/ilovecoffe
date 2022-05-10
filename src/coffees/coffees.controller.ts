@@ -14,6 +14,7 @@ import {
 } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
+import { Protocol } from 'src/common/decorators/protocol.decorator';
 import { Public } from 'src/common/decorators/public.decorator';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
@@ -32,7 +33,12 @@ export class CoffeesController {
 
   @Public()
   @Get()
-  async findAll(@Query() pagination: PaginationQueryDto) {
+  async findAll(
+    @Protocol('http') protocol: string,
+    @Query() pagination: PaginationQueryDto,
+  ) {
+    console.log(protocol);
+
     // Timeout test row
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     return this.coffeesService.getAll(pagination);
